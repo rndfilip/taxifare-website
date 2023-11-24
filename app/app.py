@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import requests
 
 '''
 # TaxiFareModel front
@@ -31,15 +32,7 @@ Either as with the title by just creating a string (or an f-string). Or as with 
 ''')
 
 '''
-## Here we would like to add some controllers in order to ask the user to select the parameters of the ride
-
-1. Let's ask for:
-- date and time
-- pickup longitude
-- pickup latitude
-- dropoff longitude
-- dropoff latitude
-- passenger count
+hm
 '''
 
 '''
@@ -52,7 +45,21 @@ See ? No need to load a `model.joblib` file in this app, we do not even need to 
 
 url = 'https://taxifare.lewagon.ai/predict'
 
-if url == 'https://taxifare.lewagon.ai/predict':
+# Define the model API endpoint URL
+model_api= url  # Replace with your actual model API URL
+
+# Make a POST request to the model API
+response = requests.post(model_api, json=input_data)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Extract the prediction from the response
+    prediction = response.json()['prediction']
+
+    # Display the predicted fare
+    st.subheader('Predicted Fare: $%.2f' % prediction)
+else:
+    st.error(f"Error making prediction. Status code: {response.status_code}")
 
     st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
 
