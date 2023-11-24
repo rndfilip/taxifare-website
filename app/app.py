@@ -3,20 +3,24 @@ import streamlit as st
 '''
 # TaxiFareModel front
 '''
-pickup_longitude = st.number_input('Insert a number')
-st.write('The current number is ', pickup_longitude)
+st.title('Taxi Fare Prediction')
 
-pickup_latitude = st.number_input('Insert a number')
-st.write('The current number is ', pickup_latitude)
+st.sidebar.header('Input Parameters')
 
-dropoff_longitude = st.number_input('Insert a number')
-st.write('The current number is ', dropoff_longitude)
+pickup_longitude = st.sidebar.number_input('Pickup Longitude', value=0.0)
+pickup_latitude = st.sidebar.number_input('Pickup Latitude', value=0.0)
+dropoff_longitude = st.sidebar.number_input('Dropoff Longitude', value=0.0)
+dropoff_latitude = st.sidebar.number_input('Dropoff Latitude', value=0.0)
+passenger_count = st.sidebar.number_input('Passenger Count', value=1)
 
-dropoff_latitude = st.number_input('Insert a number')
-st.write('The current number is ', dropoff_latitude)
-
-passenger_count = st.number_input('Insert a number')
-st.write('The current number is ', passenger_count)
+# Prepare input data for prediction
+input_data = pd.DataFrame({
+    'pickup_longitude': [pickup_longitude],
+    'pickup_latitude': [pickup_latitude],
+    'dropoff_longitude': [dropoff_longitude],
+    'dropoff_latitude': [dropoff_latitude],
+    'passenger_count': [passenger_count]
+})
 
 
 st.markdown('''
