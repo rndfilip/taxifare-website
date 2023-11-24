@@ -33,9 +33,16 @@ url = 'https://taxifare.lewagon.ai/predict'
 
 # Make a POST request to the model API
 response = requests.post(url, json=input_data)
-
-# ...
-
+# Check if the request was successful
+if response.status_code == 200:
+    # Extract the prediction from the response
+    prediction = response.json().get('prediction')
+    # Display the predicted fare
+    st.markdown('## Prediction')
+    st.write(f'Predicted Fare: ${prediction:.2f}')
+else:
+    st.error(f"Error making prediction. Status code: {response.status_code}")
+    st.text(response.text)  # Display the error response for debugging
 # Display the prediction
 st.markdown('## Prediction')
 st.write(response.json())
