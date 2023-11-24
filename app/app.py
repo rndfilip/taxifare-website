@@ -49,12 +49,19 @@ url = 'https://taxifare.lewagon.ai/predict'
 model_api= url  # Replace with your actual model API URL
 
 # Make a POST request to the model API
-response = requests.post(url).json()
+response = requests.post(url, json=input_data)
 
-prediction = response.dict()['prediction']
-
-    # Display the predicted fare
-st.subheader('Predicted Fare: $%.2f' % prediction)
+# Check if the request was successful
+if response.status_code == 200:
+    try:
+        # Extract the prediction from the response
+        prediction = response.json()['prediction']
+        # Display the predicted fare
+        st.subheader('Predicted Fare: $%.2f' % prediction)
+    except KeyError:
+        st.error("Invalid response format: 'prediction' key not found.")
+    except Exception as e:
+        st.error(f"Error making prediction: {str(e)}")
 
 # # Check if the request was successful
 # if response.status_code == 200:
