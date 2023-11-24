@@ -9,6 +9,7 @@ st.title('Taxi Fare Prediction')
 
 st.sidebar.header('Input Parameters')
 
+pickup_datetime = st.date_input('Pickup Date', value=None)
 pickup_longitude = st.sidebar.number_input('Pickup Longitude', value=0.0)
 pickup_latitude = st.sidebar.number_input('Pickup Latitude', value=0.0)
 dropoff_longitude = st.sidebar.number_input('Dropoff Longitude', value=0.0)
@@ -17,6 +18,7 @@ passenger_count = st.sidebar.number_input('Passenger Count', value=1)
 
 # Prepare input data for prediction
 input_data = pd.DataFrame({
+    'pickup_datetime': str(pickup_datetime),
     'pickup_longitude': [pickup_longitude],
     'pickup_latitude': [pickup_latitude],
     'dropoff_longitude': [dropoff_longitude],
@@ -60,8 +62,9 @@ if response.status_code == 200:
         st.subheader('Predicted Fare: $%.2f' % prediction)
     except KeyError:
         st.error("Invalid response format: 'prediction' key not found.")
-    except Exception as e:
-        st.error(f"Error making prediction: {str(e)}")
+else:
+    st.error(f"Error making prediction. Status code: {response.status_code}")
+    st.text(response.text)  # Display the error response for debugging
 
 # # Check if the request was successful
 # if response.status_code == 200:
