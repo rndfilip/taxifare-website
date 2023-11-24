@@ -3,6 +3,21 @@ import streamlit as st
 '''
 # TaxiFareModel front
 '''
+pickup_longitude = st.number_input('Insert a number')
+st.write('The current number is ', pickup_longitude)
+
+pickup_latitude = st.number_input('Insert a number')
+st.write('The current number is ', pickup_latitude)
+
+dropoff_longitude = st.number_input('Insert a number')
+st.write('The current number is ', dropoff_longitude)
+
+dropoff_latitude = st.number_input('Insert a number')
+st.write('The current number is ', dropoff_latitude)
+
+passenger_count = st.number_input('Insert a number')
+st.write('The current number is ', passenger_count)
+
 
 st.markdown('''
 Remember that there are several ways to output content into your web page...
