@@ -51,15 +51,15 @@ model_api= url  # Replace with your actual model API URL
 # Make a POST request to the model API
 response = requests.get(url).json()
 
-# Check if the request was successful
-if response.status_code == 200:
-    # Extract the prediction from the response
-    prediction = response['prediction']
+# # Check if the request was successful
+# if response.status_code == 200:
+#     # Extract the prediction from the response
+#     prediction = response['prediction']
 
-    # Display the predicted fare
-    st.subheader('Predicted Fare: $%.2f' % prediction)
-else:
-    st.error(f"Error making prediction. Status code: {response.status_code}")
+#     # Display the predicted fare
+#     st.subheader('Predicted Fare: $%.2f' % prediction)
+# else:
+#     st.error(f"Error making prediction. Status code: {response.status_code}")
 
     st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
 
