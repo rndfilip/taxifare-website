@@ -48,33 +48,12 @@ See ? No need to load a `model.joblib` file in this app, we do not even need to 
 url = 'https://taxifare.lewagon.ai/predict'
 
 # Define the model API endpoint URL
-model_api= url  # Replace with your actual model API URL
+model_api= url  
 
 # Make a POST request to the model API
 response = requests.post(url, json=input_data)
 
-# Check if the request was successful
-if response.status_code == 200:
-    try:
-        # Extract the prediction from the response
-        prediction = response.json()['prediction']
-        # Display the predicted fare
-        st.subheader('Predicted Fare: $%.2f' % prediction)
-    except KeyError:
-        st.error("Invalid response format: 'prediction' key not found.")
-else:
-    st.error(f"Error making prediction. Status code: {response.status_code}")
-    st.text(response.text)  # Display the error response for debugging
-
-# # Check if the request was successful
-# if response.status_code == 200:
-#     # Extract the prediction from the response
-#     prediction = response['prediction']
-
-#     # Display the predicted fare
-#     st.subheader('Predicted Fare: $%.2f' % prediction)
-# else:
-#     st.error(f"Error making prediction. Status code: {response.status_code}")
+new_prediction = response.json()
 
 st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
 
