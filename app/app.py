@@ -26,6 +26,7 @@ input_data = pd.DataFrame({
     'passenger_count': [passenger_count]
 })
 
+st.write(input_data)
 
 st.markdown('''
 Remember that there are several ways to output content into your web page...
