@@ -51,7 +51,7 @@ model_api= url  # Replace with your actual model API URL
 # Make a POST request to the model API
 response = requests.post(url).json()
 
-prediction = response['prediction']
+prediction = response.json()['prediction']
 
     # Display the predicted fare
 st.subheader('Predicted Fare: $%.2f' % prediction)
