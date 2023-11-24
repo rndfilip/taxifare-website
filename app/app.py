@@ -61,7 +61,7 @@ response = requests.get(url).json()
 # else:
 #     st.error(f"Error making prediction. Status code: {response.status_code}")
 
-    st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
+st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
 
 '''
 
