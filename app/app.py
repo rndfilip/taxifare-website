@@ -17,45 +17,28 @@ dropoff_latitude = st.sidebar.number_input('Dropoff Latitude', value=0.0)
 passenger_count = st.sidebar.number_input('Passenger Count', value=1)
 
 # Prepare input data for prediction
-input_data = pd.DataFrame({
+input_data = {
     'pickup_datetime': str(pickup_datetime),
-    'pickup_longitude': [pickup_longitude],
-    'pickup_latitude': [pickup_latitude],
-    'dropoff_longitude': [dropoff_longitude],
-    'dropoff_latitude': [dropoff_latitude],
-    'passenger_count': [passenger_count]
-})
+    'pickup_longitude': pickup_longitude,
+    'pickup_latitude': pickup_latitude,
+    'dropoff_longitude': dropoff_longitude,
+    'dropoff_latitude': dropoff_latitude,
+    'passenger_count': passenger_count
+}
 
+# Display the input data
 st.write(input_data)
 
-st.markdown('''
-Remember that there are several ways to output content into your web page...
-
-Either as with the title by just creating a string (or an f-string). Or as with this paragraph using the `st.` functions
-''')
-
-'''
-hm
-'''
-
-'''
-## Once we have these, let's call our API in order to retrieve a prediction
-
-See ? No need to load a `model.joblib` file in this app, we do not even need to know anything about Data Science in order to retrieve a prediction...
-
-🤔 How could we call our API ? Off course... The `requests` package 💡
-'''
-
 url = 'https://taxifare.lewagon.ai/predict'
-
-# Define the model API endpoint URL
-model_api= url  
 
 # Make a POST request to the model API
 response = requests.post(url, json=input_data)
 
-new_prediction = response.json()
+# ...
 
+# Display the prediction
+st.markdown('## Prediction')
+st.write(response.json())
 st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
 
 '''
